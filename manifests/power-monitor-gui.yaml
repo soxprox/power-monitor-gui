@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: power-monitor
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: power-monitor-gui
+  labels:
+    app: power-monitor-gui
+  namespace: power-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: power-monitor-gui
+  template:
+    metadata:
+      labels:
+        app: power-monitor-gui
+    spec:
+      containers:
+      - name: power-monitor-gui
+        image: ghcr.io/soxprox/power-monitor-gui:master
+        imagePullPolicy: Always
+        ports:
+        - name: port8080
+          containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: power-monitor-gui
+  namespace: power-monitor
+spec:
+  ports:
+  - name: port3000
+    port: 80
+    targetPort: 8080
+  selector:
+    app: power-monitor-gui
+  type: LoadBalancer

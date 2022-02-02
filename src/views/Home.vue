@@ -1,18 +1,25 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <KWHDial />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import KWHDial from "@/components/KWHDial.vue"
 export default {
   name: "Home",
   components: {
-    HelloWorld,
-  },
+    KWHDial
+  }
+
 };
 </script>
+
+<style scoped>
+  .home {
+    /* align-items: center; */
+    margin-left: 0px;
+    margin-right: auto;
+    width: 1vh;
+  }
+</style>
